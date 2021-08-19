@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./CSS/blackjackStyle.css" />
+    <title>BlackJack</title>
+  </head>
+  <body>
+    <!-- Dealer table of cards -->
+    <div class="dealer table"></div>
+    <!-- Game console  -->
+    <div class="middle table">
+      <div class="scoreDealer">Dealer | Score: <span id="scoreD">-</span></div>
+      <div class="gameConsole">
+        <div class="gameMessages">
+          Hi, press 'New Game' to start. Enjoy the game!!!
+        </div>
+        <div class="buttons">
+          <button class="hit">HIT</button>
+          <button class="stand">STAND</button>
+          <button class="newGame">New Game</button>
+        </div>
+      </div>
+      <div class="scorePlayer">Player | Score: <span id="scoreP">-</span></div>
+    </div>
+    <!-- Player table of cards -->
+    <div class="player table"></div>
+
+    <script src="./JS/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="./JS/logic.js"></script>
+  </body>
+</html>

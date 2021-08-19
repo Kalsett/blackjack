@@ -1,0 +1,160 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  /* background: rgb(63, 94, 251);
+  background: radial-gradient(
+    circle,
+    rgba(63, 94, 251, 1) 0%,
+    rgba(252, 70, 107, 1) 100%
+  ); */
+  background: rgb(251, 239, 63);
+  background: radial-gradient(
+    circle,
+    rgba(251, 239, 63, 1) 0%,
+    rgba(18, 119, 42, 1) 100%
+  );
+  height: 100%;
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/* ↓ Sections of the play ground ↓ */
+
+.table {
+  height: 33vh;
+}
+
+.dealer,
+.player {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.middle {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ↓ From here all about game console ↓ */
+
+.gameConsole {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 40vw;
+}
+
+.scoreDealer,
+.scorePlayer,
+.gameMessages {
+  background-color: blanchedalmond;
+  padding: 1vh 1.5vh;
+  border-radius: 10px;
+  margin: 1vh 1vh;
+  font-size: 2vh;
+  -webkit-box-shadow: 7px 5px 10px -4px rgba(97, 97, 97, 0.73);
+  box-shadow: 7px 5px 10px -4px rgba(97, 97, 97, 0.73);
+}
+
+.scoreDealer {
+  margin-top: -1.5vh;
+}
+
+.scorePlayer {
+  margin-bottom: -1.5vh;
+}
+
+span {
+  font-weight: bold;
+}
+
+button {
+  padding: 1vh 1.5vh;
+  cursor: pointer;
+  border-width: 0vh;
+  border-radius: 3vh;
+  font-size: 1.5vh;
+  -webkit-box-shadow: 0vh 10vh 20vh -6vh rgba(0, 0, 0, 0.12);
+  -moz-box-shadow: 0vh 10vh 20vh -6vh rgba(0, 0, 0, 0.12);
+  box-shadow: 1vh 1vh 1vh -1vh rgb(103 103 103 / 80%);
+  color: white;
+  letter-spacing: 0.3vh;
+  margin: 1vh;
+  text-align: center;
+}
+
+.hit {
+  background-color: #65b59f;
+}
+
+.stand {
+  background-color: #103b5f;
+}
+
+.newGame {
+  background-color: #ffa502;
+}
+
+/* ↓ From here all about single cards design ↓ */
+
+.card {
+  background-color: blanchedalmond;
+  /* ratio of card 8:5 */
+  height: 24vh;
+  width: 15vh;
+  border-radius: 10px;
+  margin: 1vh 1vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  -webkit-box-shadow: 7px 5px 10px -4px rgba(97, 97, 97, 0.73);
+  box-shadow: 7px 5px 10px -4px rgba(97, 97, 97, 0.73);
+}
+
+.retro {
+  background-image: radial-gradient(#ffa500 1vh, transparent 0vh),
+    radial-gradient(#113b5f 3vh, transparent 2.4vh);
+  background-size: calc(4.5 * 1.1vh) calc(4.38 * 1.1vh);
+  background-position: center;
+  background-color: #87ffde;
+}
+
+.number {
+  align-self: flex-start;
+  margin: 10%;
+  font-size: 3vh;
+}
+
+.rev {
+  align-self: flex-end;
+  transform: rotate(180deg);
+}
+
+.cardType {
+  font-size: 7vh;
+}
+
+.♥,
+.♦ {
+  color: red;
+}
+
+.♣,
+.♠ {
+  color: black;
+}
