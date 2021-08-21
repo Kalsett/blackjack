@@ -273,7 +273,7 @@ button {
 
   .number {
     margin: 10%;
-    font-size: 2vh;
+    font-size: 1vh;
   }
 
   .buttons {
@@ -281,7 +281,7 @@ button {
   }
 
   .cardType {
-    font-size: 4vh;
+    font-size: 2vh;
   }
 
   .scoreDealer {
