@@ -264,3 +264,35 @@ button {
     box-shadow: none;
   }
 }
+
+@media (max-width: 1000px) {
+  .card {
+    height: 12vh;
+    width: 7.5vh;
+  }
+
+  .number {
+    margin: 10%;
+    font-size: 2vh;
+  }
+
+  .buttons {
+    display: flex;
+  }
+
+  .cardType {
+    font-size: 4vh;
+  }
+
+  .scoreDealer {
+    margin-top: -6.5vh;
+  }
+
+  .scorePlayer {
+    margin-bottom: -6.5vh;
+  }
+
+  .table {
+    height: 32vh;
+  }
+}
