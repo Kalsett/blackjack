@@ -138,8 +138,8 @@ $(".hit").on("click", function () {
       $(".stand").click();
     } else {
       $(".gameMessages").html("You can either press 'Hit' or 'Stand' ");
+      $(".hit").prop("disabled", false);
     }
-    $(".hit").prop("disabled", false);
   }, delayCards);
 });
 
@@ -153,7 +153,10 @@ $(".stand").on("click", function () {
   // This show the dealer covered card
   if (parseInt(scoreD) >= 17) {
     if (dealerCardsCover) {
-      giveCard(dealerCards);
+      return setTimeout(() => {
+        giveCard(dealerCards);
+        $(".stand").click();
+      }, delayCards);
     }
     $("#scoreD").html(scoreD);
   }
@@ -167,7 +170,7 @@ $(".stand").on("click", function () {
       scoreD2 = scoreD.split("").splice(5).join("");
       $("#scoreD").html(scoreD);
       $(".stand").click();
-    }, delayCards);
+    }, delayCards + 200);
   }
 
   // In case there is a 1 in the dealer cards and still the option by drawing cards to
@@ -186,7 +189,7 @@ $(".stand").on("click", function () {
         scoreD = scoreD2;
       }
       $(".stand").click();
-    }, delayCards);
+    }, delayCards + 200);
   }
 
   if (parseInt(scoreD) === parseInt(scoreP)) {
