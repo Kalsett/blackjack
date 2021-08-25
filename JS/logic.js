@@ -10,6 +10,7 @@ $(".gameMessages").css("display", "none");
 let dealerCards = [];
 let playerCards = [];
 let dealerCardsCover = true;
+let delayCards = 300;
 
 // Deck ♥♣♠♦
 let cards = [
@@ -114,14 +115,15 @@ $(".newGame").on("click", function () {
             $(".hit").prop("disabled", false);
             $(".gameMessages").html("Choose between `Hit` or `Stand`");
           }
-        }, 200);
-      }, 200);
-    }, 200);
-  }, 200);
+        }, delayCards);
+      }, delayCards);
+    }, delayCards);
+  }, delayCards);
 });
 
 // All the Hit logic
 $(".hit").on("click", function () {
+  $(".hit").prop("disabled", true);
   setTimeout(function () {
     giveCard(playerCards);
     let scoreP = sumCards(playerCards);
@@ -137,7 +139,8 @@ $(".hit").on("click", function () {
     } else {
       $(".gameMessages").html("You can either press 'Hit' or 'Stand' ");
     }
-  }, 200);
+    $(".hit").prop("disabled", false);
+  }, delayCards);
 });
 
 // All the stand logic
@@ -146,6 +149,7 @@ $(".stand").on("click", function () {
   $(".hit").prop("disabled", true);
   let scoreP = sumCards(playerCards);
   let scoreD = sumCards(dealerCards);
+
   // This show the dealer covered card
   if (parseInt(scoreD) >= 17) {
     if (dealerCardsCover) {
@@ -153,27 +157,36 @@ $(".stand").on("click", function () {
     }
     $("#scoreD").html(scoreD);
   }
+
   let scoreD2 = scoreD.split("").splice(5).join(""); // In case there is a 1 in the dealer cards
-  while (parseInt(scoreD) < 17) {
-    giveCard(dealerCards);
-    scoreD = sumCards(dealerCards);
-    scoreD2 = scoreD.split("").splice(5).join("");
-    $("#scoreD").html(scoreD);
+
+  if (parseInt(scoreD) < 17) {
+    return setTimeout(() => {
+      giveCard(dealerCards);
+      scoreD = sumCards(dealerCards);
+      scoreD2 = scoreD.split("").splice(5).join("");
+      $("#scoreD").html(scoreD);
+      $(".stand").click();
+    }, delayCards);
   }
+
   // In case there is a 1 in the dealer cards and still the option by drawing cards to
   // have one number winning the player's one.
-  while (parseInt(scoreD) < parseInt(scoreP) && parseInt(scoreD2) < 17) {
-    giveCard(dealerCards);
-    if (sumCards(dealerCards).split("").splice(5)[0] === undefined) {
-      scoreD2 = sumCards(dealerCards);
-      scoreD = scoreD2;
-      $("#scoreD").html(scoreD);
-    } else {
-      scoreD2 = sumCards(dealerCards).split("").splice(5).join("");
-      scoreD = scoreD.split("").splice(0, 5).join("") + scoreD2;
-      $("#scoreD").html(scoreD);
-      scoreD = scoreD2;
-    }
+  if (parseInt(scoreD) < parseInt(scoreP) && parseInt(scoreD2) < 17) {
+    return setTimeout(() => {
+      giveCard(dealerCards);
+      if (sumCards(dealerCards).split("").splice(5)[0] === undefined) {
+        scoreD2 = sumCards(dealerCards);
+        scoreD = scoreD2;
+        $("#scoreD").html(scoreD);
+      } else {
+        scoreD2 = sumCards(dealerCards).split("").splice(5).join("");
+        scoreD = scoreD.split("").splice(0, 5).join("") + scoreD2;
+        $("#scoreD").html(scoreD);
+        scoreD = scoreD2;
+      }
+      $(".stand").click();
+    }, delayCards);
   }
 
   if (parseInt(scoreD) === parseInt(scoreP)) {
@@ -188,8 +201,7 @@ $(".stand").on("click", function () {
   }
 });
 
-// Funzione che traduce una carta in valore numerico, accetta come argomento una stringa e
-// ritorna un numero intero.
+// Accept a card and return an integer
 function parseCards(card) {
   let value = card.split("").slice(0, -1).join("");
   if (value === "J" || value === "Q" || value === "K") {
@@ -203,7 +215,7 @@ function parseCards(card) {
   return parseInt(value);
 }
 
-// Funzione che somma le carte di un giocatore e restituisce una stringa
+// Sum all the player/dealer cards and return a string
 function sumCards(player) {
   let sum1 = 0;
   let sum2 = 0;
@@ -223,7 +235,7 @@ function sumCards(player) {
   return `${sum2} | ${sum1}`;
 }
 
-// Funzione che pesca una carta dal mazzo e la da al giocatore interessato, restituisce una stringa
+// Draw a card from the deck and give it to the player/dealer. Return a string
 function giveCard(player) {
   let card;
   let htmlCard;
